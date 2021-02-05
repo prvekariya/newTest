@@ -39,6 +39,14 @@ class JobController extends Controller
     }
 
     public function update(Request $request){
+      $request->validate([
+          'name' => 'required',
+          'email' => 'required|email|unique:applications,email,'.$request->app_id,
+          'address' => 'required',
+          'gender' => 'required',
+          'expected_ctc' => 'required',
+          'notice_period' => 'required',
+      ]);
       $id = (int)$request->app_id;
       $ap = Application::find($id);
       $ap->name = $request->name;
@@ -83,20 +91,23 @@ class JobController extends Controller
       $ap->notice_period = $request->notice_period;
       if($ap->save()){
         $old = Company::where('application_id',$id)->delete();
-        $num = count($request->company_name);
-        if($num > 0){
-          for ($i=0; $i < $num; $i++) {
-            if($request->company_name[$i] != null){
-              $co = new Company;
-              $co->application_id = $ap->id;
-              $co->company_name = $request->company_name[$i];
-              $co->experience = $request->experince[$i];
-              $co->save();
+        if(isset($request->company_name)){
+          $num = count($request->company_name);
+          if($num > 0){
+            for ($i=0; $i < $num; $i++) {
+              if($request->company_name[$i] != null){
+                $co = new Company;
+                $co->application_id = $ap->id;
+                $co->company_name = $request->company_name[$i];
+                $co->experience = $request->experince[$i];
+                $co->save();
+              }
             }
           }
         }
+
       }
-      \Session::flash('sucess','Application Sent Successfully');
+      \Session::flash('sucess','Application update Successfully');
       return redirect('view/'.$id);
     }
 
@@ -105,7 +116,7 @@ class JobController extends Controller
       if($app){
         Company::where('application_id',$id)->delete();
       }
-      \Session::flash('sucess','Application Sent Successfully');
+      \Session::flash('sucess','Application deleted Successfully');
       return redirect('job_list');
 
     }

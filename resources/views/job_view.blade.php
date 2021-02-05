@@ -13,6 +13,14 @@
 
 <!-- begin row -->
 <div class="row">
+  @if(Session::has('sucess'))
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ Session::get('sucess') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  @endif
   <form class="" action="" method="post">
     @csrf
     <h3 class="text-center">Basic Details</h3>
@@ -88,7 +96,9 @@
       <label for="exampleInputEmail1">Master Degree Year</label>
       <input type="text" name="master_year" value="{{$record->master_year}}" class="form-control" id="" placeholder="Enter Master Degree Year">
     </div>
+    @if(count($record->companies) > 0)
     <h3 class="text-center">Work Experience</h3>
+    @endif
     <div class="" id="sections">
 
     @foreach($record->companies as $company)

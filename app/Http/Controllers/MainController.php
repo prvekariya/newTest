@@ -10,6 +10,14 @@ class MainController extends Controller
 {
 
   public function save(Request $request){
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:applications',
+        'address' => 'required',
+        'gender' => 'required',
+        'expected_ctc' => 'required',
+        'notice_period' => 'required',
+    ]);
     $ap = new Application;
     $ap->name = $request->name;
     $ap->email = $request->email;

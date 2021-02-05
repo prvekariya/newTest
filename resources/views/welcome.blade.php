@@ -10,7 +10,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- Styles -->
-
+        <style media="screen">
+          .error{
+            color:red;
+          }
+        </style>
     </head>
     <body>
         <div class="container">
@@ -28,16 +32,25 @@
             <h3 class="text-center">Basic Details</h3>
             <div class="form-group">
               <label for="exampleInputEmail1">Name</label>
-              <input type="text" name="name" class="form-control" id="" placeholder="Enter name">
+              <input type="text" name="name" value="{{old('name')}}" class="form-control" id="" placeholder="Enter name">
             </div>
+            @if($errors->has('name'))
+                <div class="error">{{ $errors->first('name') }}</div>
+            @endif
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
-              <input type="email" name="email" class="form-control" id="" placeholder="Enter email">
+              <input type="email" name="email" value="{{old('email')}}" class="form-control" id="" placeholder="Enter email">
             </div>
+            @if($errors->has('email'))
+                <div class="error">{{ $errors->first('email') }}</div>
+            @endif
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Address</label>
-              <textarea class="form-control" name="address" id="" rows="3"></textarea>
+              <textarea class="form-control" name="address" id="" rows="3">{{old('address')}}</textarea>
             </div>
+            @if($errors->has('address'))
+                <div class="error">{{ $errors->first('address') }}</div>
+            @endif
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Gender : </label>
               <div class="form-check form-check-inline">
@@ -49,54 +62,57 @@
                 <label class="form-check-label" for="inlineRadio2">Female</label>
               </div>
             </div>
+            @if($errors->has('gender'))
+                <div class="error">{{ $errors->first('gender') }}</div>
+            @endif
             <h3 class="text-center">Education details</h3>
             <div class="form-group">
               <label for="exampleInputEmail1">SSC Institute</label>
-              <input type="text" name="ssc_institute" class="form-control" id="" placeholder="Enter SSC Institute">
+              <input type="text" name="ssc_institute" value="{{old('ssc_institute')}}" class="form-control" id="" placeholder="Enter SSC Institute">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">SSC grade</label>
-              <input type="text" name="ssc_grade" class="form-control" id="" placeholder="Enter SSC grade">
+              <input type="text" name="ssc_grade" value="{{old('ssc_grade')}}" class="form-control" id="" placeholder="Enter SSC grade">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">SSC Year</label>
-              <input type="text" name="ssc_year" class="form-control" id="" placeholder="Enter SSC Year">
+              <input type="number" min="1900" max="{{date('Y')}}" step="1" name="ssc_year" value="{{old('ssc_year')}}" class="form-control" id="" placeholder="Enter SSC Year">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">HSC Institute</label>
-              <input type="text" name="hsc_institute" class="form-control" id="" placeholder="Enter HSC Institute">
+              <input type="text" name="hsc_institute" value="{{old('hsc_institute')}}" class="form-control" id="" placeholder="Enter HSC Institute">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">HSC grade</label>
-              <input type="text" name="hsc_grade" class="form-control" id="" placeholder="Enter HSC grade">
+              <input type="text" name="hsc_grade" value="{{old('hsc_grade')}}" class="form-control" id="" placeholder="Enter HSC grade">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">HSC Year</label>
-              <input type="text" name="hsc_year" class="form-control" id="" placeholder="Enter HSC Year">
+              <input type="number" min="1900" max="{{date('Y')}}" step="1" name="hsc_year" value="{{old('hsc_year')}}" class="form-control" id="" placeholder="Enter HSC Year">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Graduation Institute</label>
-              <input type="text" name="graduation_institute" class="form-control" id="" placeholder="Enter Graduation Institute">
+              <input type="text" name="graduation_institute" value="{{old('graduation_institute')}}" class="form-control" id="" placeholder="Enter Graduation Institute">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Graduation grade</label>
-              <input type="text" name="graduation_grade" class="form-control" id="" placeholder="Enter Graduation grade">
+              <input type="text" name="graduation_grade" value="{{old('graduation_grade')}}" class="form-control" id="" placeholder="Enter Graduation grade">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Graduation Year</label>
-              <input type="text" name="graduation_year" class="form-control" id="" placeholder="Enter Graduation Year">
+              <input type="number" min="1900" max="{{date('Y')}}" step="1" name="graduation_year" value="{{old('graduation_year')}}" class="form-control" id="" placeholder="Enter Graduation Year">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Master Degree Institute</label>
-              <input type="text" name="master_institute" class="form-control" id="" placeholder="Enter Master Degree Institute">
+              <input type="text" name="master_institute" value="{{old('master_institute')}}" class="form-control" id="" placeholder="Enter Master Degree Institute">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Master Degree grade</label>
-              <input type="text" name="master_grade" class="form-control" id="" placeholder="Enter Master Degree grade">
+              <input type="text" name="master_grade" value="{{old('master_grade')}}" class="form-control" id="" placeholder="Enter Master Degree grade">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Master Degree Year</label>
-              <input type="text" name="master_year" class="form-control" id="" placeholder="Enter Master Degree Year">
+              <input type="number" min="1900" max="{{date('Y')}}" step="1" name="master_year" value="{{old('master_year')}}" class="form-control" id="" placeholder="Enter Master Degree Year">
             </div>
             <h3 class="text-center">Work Experience</h3>
             <div class="" id="sections">
@@ -304,7 +320,7 @@
             <h3 class="text-center">Preference </h3><br>
             <div class="form-group">
               <label class="form-check-label" for="inlineCheckbox1">Preferred Location</label>
-              <select name="preferred_location" class="form-control">
+              <select name="preferred_location" value="{{old('preferred_location')}}" class="form-control">
                 <option value="Ahmedabad">Ahmedabad</option>
                 <option value="Rajkot">Rajkot</option>
                 <option value="Mumbai">Mumbai</option>
@@ -313,16 +329,22 @@
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Expected CTC : </label>
-              <input type="text" name="expected_ctc" class="form-control" id="" placeholder="Enter Expected CTC">
+              <input type="text" name="expected_ctc" value="{{old('expected_ctc')}}" class="form-control" id="" placeholder="Enter Expected CTC">
             </div>
+            @if($errors->has('expected_ctc'))
+                <div class="error">{{ $errors->first('expected_ctc') }}</div>
+            @endif
             <div class="form-group">
               <label for="exampleInputEmail1">Current CTC : </label>
-              <input type="text" name="current_ctc" class="form-control" id="" placeholder="Enter Current CTC">
+              <input type="text" name="current_ctc" value="{{old('current_ctc')}}" class="form-control" id="" placeholder="Enter Current CTC">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Notice Period : </label>
-              <input type="text" name="notice_period" class="form-control" id="" placeholder="Enter Notice Period">
+              <input type="text" name="notice_period" value="{{old('notice_period')}}" class="form-control" id="" placeholder="Enter Notice Period">
             </div>
+            @if($errors->has('notice_period'))
+                <div class="error">{{ $errors->first('notice_period') }}</div>
+            @endif
             <div class="text-center">
               <button type="submit" class="btn btn-primary center">Submit</button>
             </div>

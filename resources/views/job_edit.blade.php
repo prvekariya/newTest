@@ -13,6 +13,14 @@
 
 <!-- begin row -->
 <div class="row">
+  @if(Session::has('sucess'))
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ Session::get('sucess') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  @endif
   <form class="" action="{{route('update')}}" method="post">
     @csrf
     <input type="hidden" name="app_id" value="{{$record->id}}">
@@ -21,14 +29,23 @@
       <label for="exampleInputEmail1">Name</label>
       <input type="text" name="name" value="{{$record->name}}" class="form-control" id="" placeholder="Enter name">
     </div>
+    @if($errors->has('name'))
+        <div class="err">{{ $errors->first('name') }}</div>
+    @endif
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input type="email" name="email" value="{{$record->email}}" class="form-control" id="" placeholder="Enter email">
     </div>
+    @if($errors->has('email'))
+        <div class="err">{{ $errors->first('email') }}</div>
+    @endif
     <div class="form-group">
       <label for="exampleFormControlTextarea1">Address</label>
       <textarea class="form-control" name="address" id="" rows="3">{{$record->address}}</textarea>
     </div>
+    @if($errors->has('address'))
+        <div class="err">{{ $errors->first('address') }}</div>
+    @endif
     <div class="form-group">
       <label for="exampleFormControlTextarea1">Gender : </label>
       <div class="form-check form-check-inline">
@@ -40,6 +57,9 @@
         <label class="form-check-label" for="inlineRadio2">Female</label>
       </div>
     </div>
+    @if($errors->has('gender'))
+        <div class="err">{{ $errors->first('gender') }}</div>
+    @endif
     <h3 class="text-center">Education details</h3>
     <div class="form-group">
       <label for="exampleInputEmail1">SSC Institute</label>
@@ -51,7 +71,7 @@
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">SSC Year</label>
-      <input type="text" name="ssc_year" value="{{$record->ssc_year}}" class="form-control" id="" placeholder="Enter SSC Year">
+      <input type="number" min="1900" max="{{date('Y')}}" step="1" name="ssc_year" value="{{$record->ssc_year}}" class="form-control" id="" placeholder="Enter SSC Year">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">HSC Institute</label>
@@ -63,7 +83,7 @@
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">HSC Year</label>
-      <input type="text" name="hsc_year" value="{{$record->hsc_year}}" class="form-control" id="" placeholder="Enter HSC Year">
+      <input type="number" min="1900" max="{{date('Y')}}" step="1" name="hsc_year" value="{{$record->hsc_year}}" class="form-control" id="" placeholder="Enter HSC Year">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Graduation Institute</label>
@@ -75,7 +95,7 @@
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Graduation Year</label>
-      <input type="text" name="graduation_year" value="{{$record->graduation_year}}" class="form-control" id="" placeholder="Enter Graduation Year">
+      <input type="number" min="1900" max="{{date('Y')}}" step="1" name="graduation_year" value="{{$record->graduation_year}}" class="form-control" id="" placeholder="Enter Graduation Year">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Master Degree Institute</label>
@@ -87,12 +107,12 @@
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Master Degree Year</label>
-      <input type="text" name="master_year" value="{{$record->master_year}}" class="form-control" id="" placeholder="Enter Master Degree Year">
+      <input type="number" min="1900" max="{{date('Y')}}" step="1" name="master_year" value="{{$record->master_year}}" class="form-control" id="" placeholder="Enter Master Degree Year">
     </div>
     <h3 class="text-center">Work Experience</h3>
     <div class="" id="sections">
 
-    @foreach($record->companies as $company)
+    @forelse($record->companies as $company)
     <div class="section">
       <fieldset>
           <legend>Company</legend>
@@ -107,7 +127,22 @@
           <p><a href="#" class='remove'>Remove Section</a></p>
       </fieldset>
     </div>
-    @endforeach
+    @empty
+    <div class="section">
+      <fieldset>
+          <legend>Company</legend>
+          <p>
+              <label for="CompanyName">Company Name:</label>
+              <input class="form-control" value="" name="company_name[]" id="" value="" type="text" />
+          </p>
+          <p>
+              <label for="Experience">Experience:</label>
+              <input class="form-control" value="" name="experince[]" id="lastName" value="" type="text" />
+          </p>
+          <p><a href="#" class='remove'>Remove Section</a></p>
+      </fieldset>
+    </div>
+    @endforelse
     </div>
     <p><a href="#" class='addsection'>Add Section</a></p>
     <h3 class="text-center">Known Languages </h3><br>
@@ -307,6 +342,9 @@
       <label for="exampleInputEmail1">Expected CTC : </label>
       <input type="text" name="expected_ctc" value="{{$record->expected_ctc}}" class="form-control" id="" placeholder="Enter Expected CTC">
     </div>
+    @if($errors->has('expected_ctc'))
+        <div class="err">{{ $errors->first('expected_ctc') }}</div>
+    @endif
     <div class="form-group">
       <label for="exampleInputEmail1">Current CTC : </label>
       <input type="text" name="current_ctc" value="{{$record->current_ctc}}" class="form-control" id="" placeholder="Enter Current CTC">
@@ -315,6 +353,9 @@
       <label for="exampleInputEmail1">Notice Period : </label>
       <input type="text" name="notice_period" value="{{$record->notice_period}}" class="form-control" id="" placeholder="Enter Notice Period">
     </div>
+    @if($errors->has('notice_period'))
+        <div class="err">{{ $errors->first('notice_period') }}</div>
+    @endif
     <div class="text-center">
       <button type="submit" class="btn btn-primary center">Submit</button>
     </div>
@@ -323,6 +364,13 @@
 <!-- end row -->
 
 @endsection
+@push('css')
+<style media="screen">
+  .err{
+    color:red;
+  }
+</style>
+@endpush
 @push('js')
 
 <script type="text/javascript">

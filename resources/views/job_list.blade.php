@@ -37,6 +37,14 @@
       <!-- end alert -->
       <!-- begin panel-body -->
       <div class="panel-body">
+        @if(Session::has('sucess'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{ Session::get('sucess') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        @endif
         <table id="data-table-responsive" class="table table-striped table-bordered table-td-valign-middle">
           <thead>
             <tr>
