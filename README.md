@@ -1,6 +1,6 @@
 Do this step to run project
 
-1) Rename .env.example to .env
+1) Rename .env.example to .env and Run "php artisan key:generate"
 2) configure database detail in .env File
 3) Run "composer update && php artisan migrate"
 4) Run "composer dumpautoload"
