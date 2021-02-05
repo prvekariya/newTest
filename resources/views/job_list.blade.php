@@ -29,11 +29,11 @@
       </div>
       <!-- end panel-heading -->
       <!-- begin alert -->
-      <div class="alert alert-secondary fade show">
+      <!-- <div class="alert alert-secondary fade show">
         <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
         </button>
-      </div>
+      </div> -->
       <!-- end alert -->
       <!-- begin panel-body -->
       <div class="panel-body">
@@ -56,7 +56,7 @@
               <td>{{$rec->email}}</td>
               <td>{{$rec->address}}</td>
               <td>{{$rec->gender}}</td>
-              <td><a href="" class="btn btn-default">View</a>&nbsp;<a href="" class="btn btn-success">Edit</a>&nbsp;<a href="" class="btn btn-danger">Delete</a>&nbsp;</td>
+              <td><a href="{{route('view',['id'=>$rec->id])}}" class="btn btn-default">View</a>&nbsp;<a href="{{route('edit',['id'=>$rec->id])}}" class="btn btn-success">Edit</a>&nbsp;<a href="{{route('delete',['id'=>$rec->id])}}" class="btn btn-danger">Delete</a>&nbsp;</td>
             </tr>
             @endforeach
           </tbody>
