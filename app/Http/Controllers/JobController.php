@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Application;
 
 class JobController extends Controller
 {
@@ -23,6 +24,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $records = Application::all();
+        return view('job_list',['records'=>$records]);
     }
 }

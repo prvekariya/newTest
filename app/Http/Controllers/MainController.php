@@ -57,14 +57,15 @@ class MainController extends Controller
         for ($i=0; $i < $num; $i++) {
           if($request->company_name[$i] != null){
             $co = new Company;
+            $co->application_id = $ap->id;
             $co->company_name = $request->company_name[$i];
-            $co->experince = $request->experince[$i];
+            $co->experience = $request->experince[$i];
             $co->save();
           }
         }
       }
     }
-    session()->flash('sucess','Application Sent Successfully');
+    \Session::flash('sucess','Application Sent Successfully');
     return redirect('/');
   }
 

@@ -17,6 +17,7 @@
 	<link href="{{asset('assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css')}}" rel="stylesheet" />
 	<link href="{{asset('assets/plugins/gritter/css/jquery.gritter.css')}}" rel="stylesheet" />
 	<!-- ================== END PAGE LEVEL STYLE ================== -->
+	@stack('css')
 </head>
 <body>
 	<!-- begin #page-loader -->
@@ -235,5 +236,6 @@
 	<script src="{{asset('assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js')}}"></script>
 	<script src="{{asset('assets/js/demo/dashboard.js')}}"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
+	@stack('js')
 </body>
 </html>
